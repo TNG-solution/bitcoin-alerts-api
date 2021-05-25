@@ -1,4 +1,4 @@
-FROM ermiry/pycerver:latest
+FROM ermiry/pycerver:release-0.6.3
 
 WORKDIR /home/api
 
