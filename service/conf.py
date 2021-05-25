@@ -2,6 +2,7 @@ import os, signal, sys
 import ctypes
 from service.btc import *
 import service.routes.btc as rbtc
+import service.controllers.btc as cbtc
 
 import cerver
 from cerver.http import *
@@ -19,7 +20,9 @@ def btc_set_routes (http_cerver):
     #route_configuration
     #GET /api/btc
     main_route = http_create_route(REQUEST_METHOD_GET, "api/btc", rbtc.top_level_handler, http_cerver = http_cerver)
-    pass
+
+    #GET /api/btc/prediction
+    http_create_route(REQUEST_METHOD_GET, "prediction", rbtc.prediction_handler, main_route)
 
 def start ():
     global api_cerver
@@ -30,5 +33,8 @@ def start ():
     cerver_auth_http_configuration(http_cerver)
 
     btc_set_routes (http_cerver)
+
+    cbtc.train_neural_network()
+    print(cbtc.test_neural_network())
 
     cerver.cerver_start(api_cerver)
