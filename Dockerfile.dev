@@ -1,10 +1,8 @@
-FROM tensorflow/tensorflow:latest
+FROM ermiry/pycerver:release-0.6.3
 
 WORKDIR /home/btc
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-
 
 CMD ["/bin/bash"]
