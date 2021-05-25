@@ -1,6 +1,6 @@
 FROM ermiry/pycerver:release-0.6.3
 
-WORKDIR /home/btc
+WORKDIR /home/api
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
